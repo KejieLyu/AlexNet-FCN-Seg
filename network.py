@@ -219,6 +219,7 @@ class Network(object):
             # Return layer's output
             return outputs
 
+    @staticmethod
     def upsample(x, name):
         """
         Function for upsample layer
