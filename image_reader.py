@@ -6,7 +6,7 @@ import tensorflow as tf
 crop_size = (480, 640)
 image_size = (480, 640)
 err = 4.9406564584124654e-324
-img_size = [116.190, 97.203, 92.318]
+img_mean = [116.190, 97.203, 92.318]
 
 
 def image_rotate(img, lab):
