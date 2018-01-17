@@ -229,7 +229,7 @@ class CaffeFCNSegmentation(object):
         # --Inference:
         # Create the CaffeFCN network
         with tf.name_scope("net_a"), tf.variable_scope("net_a"):
-            net = CaffeFCN(img_bat, keep_prob=[1, 1])
+            net = CaffeFCN(img_bat, keep_p=[1, 1])
         # Get the output of the network
         raw_preds = net.score_up
         # Get the prediction
@@ -265,7 +265,7 @@ class CaffeFCNSegmentation(object):
         with tf.name_scope("summary"):
             images_summary = tf.py_func(inv_preprocess, [img_bat, 1, img_mean], tf.uint8)
             labels_summary = tf.py_func(decode_labels, [lab_bat, 1, nclass], tf.uint8)
-            preds_summary = tf.py_func(decode_labels, [raw_pred, 1, nclass], tf.uint8)
+            preds_summary = tf.py_func(decode_labels, [preds, 1, nclass], tf.uint8)
             tf.summary.image('images', tf.concat(axis=2, values=[images_summary, labels_summary, preds_summary]), max_outputs=1)
             merge = tf.summary.merge_all()
         # Create Saver objects for save and restore
