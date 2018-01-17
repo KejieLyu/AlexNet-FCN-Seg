@@ -1,3 +1,6 @@
+import tensorflow as tf
+
+
 class Network(object):
     """
     Network class, includes implementation of cnn layers. 
@@ -197,7 +200,7 @@ class Network(object):
         with tf.name_scope(name):
             outputs = tf.nn.dropout(x, keep_prob)
             # Return layer's output
-            return layer_output
+            return outputs
 
     @staticmethod
     def concat(x, dim, name):
