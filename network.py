@@ -6,7 +6,6 @@ class Network(object):
         """
         Initialization
         """
-        self.layers = {}
         self.inputs = inputs
         self.keep_p = keep_p
         self.is_train = is_train
@@ -75,8 +74,6 @@ class Network(object):
             if relu:
                 # Nonlinear process
                 outputs = tf.nn.relu(outputs)
-            # Add the output of the layer to layers dict
-            self.layers[name] = outputs
             # Return layer's output
             return outputs
 
@@ -104,8 +101,6 @@ class Network(object):
         """
         with tf.name_scope(name):
             outputs = tf.nn.max_pool(x, [1, k_h, k_w, 1], [1, s_h, s_w, 1], padding)
-            # Add the output of the layer to layers dict
-            self.layers[name] = outputs
             # Return layer's output
             return outputs
 
@@ -123,8 +118,6 @@ class Network(object):
 
         with tf.name_scope(name):
             outputs = tf.nn.relu(x)
-            # Add the output of the layer to layers dict
-            self.layers[name] = outputs
             # Return layer's output
             return layer_output
 
@@ -162,8 +155,6 @@ class Network(object):
             outputs = tf.nn.xw_plus_b(x, weights, biases)
             if relu:
                 outputs = tf.nn.relu(outputs)
-            # Add the output of the layer to layers dict
-            self.layers[name] = outputs
             # Return layer's output
             return outputs
 
@@ -186,8 +177,6 @@ class Network(object):
         """
         with tf.name_scope(name):
             outputs = tf.nn.local_response_normalization(x, n, k, alpha, beta)
-            # Add the output of the layer to layers dict
-            self.layers[name] = outputs
             # Return layer's output
             return outputs
 
@@ -205,8 +194,6 @@ class Network(object):
         """
         with tf.name_scope(name):
             outputs = tf.nn.dropout(x, keep_prob)
-            # Add the output of the layer to layers dict
-            self.layers[name] = outputs
             # Return layer's output
             return layer_output
 
@@ -224,8 +211,6 @@ class Network(object):
         """
         with tf.name_scope(name):
             outputs = tf.concat(x, dim)
-            # Add the output of the layer to layers dict
-            self.layers[name] = outputs
             # Return layer's output
             return outputs
 
@@ -244,8 +229,6 @@ class Network(object):
             if size is None:
                 size = self.inputs.get_shape().as_list()[1:3]
             outputs = tf.image.resize_bilinear(x, size)
-            # Add the output of the layer to layers dict
-            self.layers[name] = outputs
             # Return layer's output
             return outputs
 
@@ -262,8 +245,6 @@ class Network(object):
         """
         with tf.name_scope(name):
             outputs = tf.nn.softmax (x)
-            # Add the output of the layer to layers dict
-            self.layers[name] = outputs
             # Return layer's output
             return outputs
   
@@ -307,8 +288,6 @@ class Network(object):
             if relu:
                 # Nonlinear process
                 outputs = tf.nn.relu(outputs)
-            # Add the output of the layer to layers dict
-            self.layers[name] = outputs
             # Return layer's output
             return outputs
 	
