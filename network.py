@@ -2,7 +2,7 @@ class Network(object):
     """
     Network class, includes implementation of cnn layers. 
     """
-    def __init__(self, inputs, keep_p, is_train):
+    def __init__(self, inputs, keep_p, is_train=True, trainable=True):
         """
         Initialization
         """
@@ -10,6 +10,7 @@ class Network(object):
         self.inputs = inputs
         self.keep_p = keep_p
         self.is_train = is_train
+	self.trainable = trainable
         self.setup() 
  
     def setup(self):
