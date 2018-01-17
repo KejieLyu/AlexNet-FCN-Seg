@@ -291,6 +291,10 @@ class CaffeFCNSegmentation(object):
             print 'Freq IoU: {:.3f}'.format(f)
             print 'Accuracy: {:.3f}'.format(a)
             print '-----------------------------'
+            for step in range(654):
+                if step % 20 == 0:
+                    m = sess.run(merge)
+                    writer.add_summary(m, step)
             coord.request_stop()
             coord.join(threads)
         writer.close()
