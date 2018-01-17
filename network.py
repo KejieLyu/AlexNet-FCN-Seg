@@ -8,9 +8,9 @@ class Network(object):
         """
         self.inputs = inputs
         self.keep_p = keep_p
-	self.upsize = upsize
+        self.upsize = upsize
         self.is_train = is_train
-	self.trainable = trainable
+        self.trainable = trainable
         self.setup() 
  
     def setup(self):
@@ -227,8 +227,8 @@ class Network(object):
         """
         with tf.name_scope(name):
             if self.upsize is not None:
-				size = self.upsize
-			else:
+                size = self.upsize
+            else:
                 size = self.inputs.get_shape().as_list()[1:3]
             outputs = tf.image.resize_bilinear(x, size)
             # Return layer's output
