@@ -147,8 +147,8 @@ class CaffeFCNSegmentation(object):
             # Create a global step variable
             global_step = tf.Variable(0, trainable=False, name="global_step")
             # Create the optimizer objects
-            p1_opt = tf.train.MomentumOptimizer(self.args.learning_rate_base * 0.001, self.args.momentum)
-            p2_opt = tf.train.MomentumOptimizer(self.args.learning_rate_base * 0.002, self.args.momentum)
+            p1_opt = tf.train.MomentumOptimizer(lr_base * 0.001, momentum)
+            p2_opt = tf.train.MomentumOptimizer(lr_base * 0.002, momentum)
             # Get the variables
             p1 = [p for p in tf.trainable_variables() if "score_fr/biases" not in p.name]
             p2 = [p for p in tf.trainable_variables() if "score_fr/biases" in p.name]
