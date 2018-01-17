@@ -2,12 +2,13 @@ class Network(object):
     """
     Network class, includes implementation of cnn layers. 
     """
-    def __init__(self, inputs, keep_p, is_train=True, trainable=True):
+    def __init__(self, inputs, keep_p, upsize = None, is_train=True, trainable=True):
         """
         Initialization
         """
         self.inputs = inputs
         self.keep_p = keep_p
+	self.upsize = upsize
         self.is_train = is_train
 	self.trainable = trainable
         self.setup() 
@@ -214,19 +215,20 @@ class Network(object):
             # Return layer's output
             return outputs
 
-    def upsample(x, name, size=None):
+    def upsample(x, name):
         """
         Function for upsample layer
 
         Input:
         --- x: Layer input, 4-D Tensor, with shape [bsize, height, width, channel]
         --- name: Layer name
-        --- size: Output size after upsample
         Output:
         --- outputs: Output of the upsample layer
         """
         with tf.name_scope(name):
-            if size is None:
+            if self.upsize is not None:
+				size = self.upsize
+			else:
                 size = self.inputs.get_shape().as_list()[1:3]
             outputs = tf.image.resize_bilinear(x, size)
             # Return layer's output
