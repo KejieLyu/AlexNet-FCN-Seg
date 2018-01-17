@@ -20,6 +20,7 @@ class Network(object):
         """
         raise NotImplementedError("Need to be implemented in subclasses")
 
+    @staticmethod
     def conv(x,
              k_h,
              k_w,
@@ -53,7 +54,7 @@ class Network(object):
             # Get the input channel
             c_i = x.get_shape()[-1]/group
             # Create the weights, with shape [k_h, k_w, c_i, c_o]
-            weights = tf.get_variable("weights", [k_h, k_w, c_i, c_o], trainable=trable)
+            weights = tf.get_variable("weights", [k_h, k_w, c_i, c_o], trainable=trainable)
             # Create the biases, with shape [c_o]
             biases = tf.get_variable("biases", [c_o], initializer=tf.zeros_initializer, trainable=trainable)
             # Create a function for convolution calculation
@@ -280,7 +281,7 @@ class Network(object):
             # Get the input channel
             c_i = layer_input.get_shape()[-1]
             # Create the weights, with shape [k_h, k_w, c_i, c_o]
-            weights = tf.get_variable("weights", [k_h, k_w, c_i, c_o], trainable=trable)
+            weights = tf.get_variable("weights", [k_h, k_w, c_i, c_o], trainable=trainable)
             # Create the biases, with shape [c_o]
             biases = tf.get_variable("biases", [c_o], initializer=tf.zeros_initializer, trainable=trainable)
             # Do atrous conv
