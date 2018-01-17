@@ -21,7 +21,7 @@ nclass = 40
 lr_base = 1
 momentum = 0.9
 weight_decay = 0.0005
-training_steps = 25000
+training_steps = 30000
 image_size = (480, 640)
 img_mean = [116.190, 97.203, 92.318]
 
@@ -168,8 +168,8 @@ class CaffeFCNSegmentation(object):
             tf.summary.scalar("data_loss", data_loss)
             # grads and vals summary
             for grad, val in grads_vals:
-            tf.summary.histogram(val.name, val)
-            tf.summary.histogram(val.name + "_grads", grad)
+                tf.summary.histogram(val.name, val)
+                tf.summary.histogram(val.name + "_grads", grad)
             # Image summary.
             images_summary = tf.py_func(inv_preprocess, [img_bat, 2, img_mean], tf.uint8)
             labels_summary = tf.py_func(decode_labels, [lab_bat, 2, nclass], tf.uint8)
