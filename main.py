@@ -200,14 +200,14 @@ class CaffeFCNSegmentation(object):
                 gstep = global_step.eval(session=sess)
                 if (gstep % 100 == 0) and (step != 0):
                     self.save(saver, sess, global_step)
-                    lo, m, _ =  sess.run([loss, merge, update])
+                    lo, m, _ =  sess.run([loss, merge, update_op])
                     writer.add_summary(m, gstep)
                     print "{0}: After {1} training steps, the loss = {2}".format(datetime.now(), gstep, lo)
                 elif gstep % 50 == 0:
-                    lo, _ =  sess.run([loss, update])
+                    lo, _ =  sess.run([loss, update_op])
                     print "{0}: After {1} training steps, the loss = {2}".format(datetime.now(), gstep, lo)
                 else:
-                    sess.run(update)
+                    sess.run(update_op)
             print "{} -- Training Stopped".format(datetime.now())
             coord.request_stop()
             coord.join(threads)
