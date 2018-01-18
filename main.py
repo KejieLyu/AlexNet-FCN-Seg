@@ -111,7 +111,7 @@ class CaffeFCNSegmentation(object):
         # Read the images and the labels
         with tf.name_scope("create_inputs"):
             data_list = os.path.join(data_list_dir, "train.txt")
-            train_reader = Reader(coord, data_list, True, True, True, True)
+            train_reader = Reader(coord, data_list, is_training=True)
             img_bat, lab_bat = train_reader.dequeue(bsize)
         # --Inference:
         # Create the CaffeFCN network
@@ -221,7 +221,7 @@ class CaffeFCNSegmentation(object):
         # Read the images and the labels
         with tf.name_scope("create_inputs"):
             data_list = os.path.join(data_list_dir, "val.txt")
-            test_reader = Reader(coord, data_list)
+            test_reader = Reader(coord, data_list, is_training=False)
             img = test_reader.img
             lab = test_reader.lab
             img_bat = tf.expand_dims(img, dim=0)
