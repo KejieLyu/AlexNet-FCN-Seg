@@ -1,4 +1,4 @@
-form network import Network
+from network import Network
 
 class CaffeFCN(Network):
     """
