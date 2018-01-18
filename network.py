@@ -124,7 +124,7 @@ class Network(object):
         with tf.name_scope(name):
             outputs = tf.nn.relu(x)
             # Return layer's output
-            return layer_output
+            return outputs
 
     @staticmethod
     def fc(x, nout, name, relu, trainable=True):
@@ -282,7 +282,7 @@ class Network(object):
         """
         with tf.name_scope(name), tf.variable_scope(name):
             # Get the input channel
-            c_i = layer_input.get_shape()[-1]
+            c_i = x.get_shape()[-1]
             # Create the weights, with shape [k_h, k_w, c_i, c_o]
             weights = tf.get_variable("weights", [k_h, k_w, c_i, c_o], trainable=trainable)
             # Create the biases, with shape [c_o]
